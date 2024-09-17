@@ -1,0 +1,38 @@
+public class matrixPaths {
+
+//    public static void findall(int rows, int cols)
+//    {
+//        char []path = new char[rows + cols - 2];
+//        findpath(0, 0 ,rows, cols, path, 0);
+//    }
+
+    public static void findpath(int i, int j, int rows, int cols, char[] path, int index)
+    {
+        //base case: reached at destination
+        if(i == rows - 1 && j == cols - 1)
+        {
+            System.out.println(String.valueOf(path));
+        }
+
+        //move right
+        if(j + 1 < cols)
+        {
+            path[index] = 'R';
+            findpath(i, j+1,rows, cols, path, index + 1);
+        }
+
+        //move down
+        if(i + 1 < rows)
+        {
+            path[index] = 'D';
+            findpath(i+1, j,rows, cols, path, index + 1);
+        }
+    }
+
+    public static void main(String[] args) {
+        int rows = 4;
+        int cols = 4;
+        char []path = new char[rows + cols - 2];
+        findpath(0,0,rows, cols,path,0);
+    }
+}
