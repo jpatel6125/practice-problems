@@ -1,0 +1,67 @@
+import java.util.Stack;
+
+
+class QueueStack {
+    Stack<Integer> st1 = new Stack<>();
+    Stack<Integer> st2 = new Stack<>();
+
+    public void Enqueue(int x) {
+        st1.push(x);
+    }
+
+    public int Dequeue() {
+        if (st1.isEmpty() && st2.isEmpty()) {
+            System.out.println("The queue is empty");
+            return -1;
+        }
+        if (st2.isEmpty()) {
+            while (!st1.isEmpty()) {
+                st2.push(st1.pop());
+            }
+        }
+        return st2.pop();
+    }
+
+    public void printQueue() {
+        if (!st2.isEmpty()) {
+            for (int i = st2.size() - 1; i >= 0; i--) {
+                System.out.print(st2.get(i) + " ");
+            }
+        }
+
+        if (!st1.isEmpty()) {
+            for(int i = 0; i < st1.size(); i++) {
+                System.out.print(st1.get(i) + " ");
+            }
+        }
+
+        if (st1.isEmpty() && st2.isEmpty()) {
+            System.out.println("Queue is empty");
+        } else {
+            System.out.println();
+        }
+    }
+
+}
+
+public class Queue_Using_Stacks {
+    public static void main(String[] args) {
+        QueueStack qs = new QueueStack();
+        qs.Enqueue(1);
+        qs.Enqueue(2);
+        qs.Enqueue(3);
+        qs.Enqueue(4);
+        qs.Enqueue(5);
+        System.out.println("The queue right now is: ");
+        qs.printQueue();
+
+        qs.Dequeue();
+        qs.Dequeue();
+        System.out.println("After using Dequeue for 2 times, the queue now is: ");
+        qs.printQueue();
+
+        System.out.println("Using Enqueue(1), the queue now is: ");
+        qs.Enqueue(1);
+        qs.printQueue();
+    }
+}
